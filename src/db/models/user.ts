@@ -1,5 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import connection from '../../config/dbConnect'
+import Role from "./role";
 
 interface UserAttributes {
   id?: number,
@@ -33,36 +34,43 @@ class User extends Model<UserAttributes, UserInput> implements UserAttributes {
 
 User.init({
   id: {
-    allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
     type: DataTypes.BIGINT,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
   },
   name: {
     type: DataTypes.STRING,
+    allowNull: true
   },
   email: {
     type: DataTypes.STRING,
+    allowNull: true
   },
   roleId: {
     type: DataTypes.BIGINT,
+    allowNull: true
   },
   password: {
     type: DataTypes.TEXT,
+    allowNull: true
   },
   accessToken: {
     type: DataTypes.TEXT,
+    allowNull: true
   },
   verified: {
     type: DataTypes.BOOLEAN,
+    allowNull: true
   },
   active: {
     type: DataTypes.BOOLEAN,
-  },
+    allowNull: true
+  }
 }, {
   timestamps: true,
   sequelize: connection,
   underscored: false,
 });
-
+User.belongsTo(Role, { foreignKey: "roleId" });
 export default User;

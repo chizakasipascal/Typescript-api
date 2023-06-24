@@ -16,5 +16,7 @@ router.get("/get-one-role/:id", RoleController.GetRoleById);
 router.post('/user/sigunp', UserValidation.RegisterValidation, UserController.Register)
 router.post('/user/login', UserController.UserLogin)
 router.get("/user/refresh-token", UserController.RefreshToken);
+router.get("/user/current", Autorization.Authenticated, UserController.UserDetail);
+router.get("/user/logout", Autorization.Authenticated, UserController.UserLogout);
 
 export default router;
