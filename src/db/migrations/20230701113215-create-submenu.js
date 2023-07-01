@@ -12,7 +12,7 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
-      nasterMenuId: {
+      masterMenuId: {
         type: Sequelize.BIGINT,
       },
       url: {
